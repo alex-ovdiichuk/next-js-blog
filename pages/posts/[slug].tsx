@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 
+import { PostContent } from '../../components/Posts';
+
 const PostPage: FC = () => {
-  return <div>Post</div>;
+  return <PostContent />;
 };
 
 export default PostPage;
