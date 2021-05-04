@@ -35,7 +35,6 @@ export const PostContent: FC<PostContentProps> = ({ post }) => {
       const { children } = code;
 
       return (
-        // <code>123</code>
         <SyntaxHighlighter language="javascript" style={atomDark}>
           {children}
         </SyntaxHighlighter>
