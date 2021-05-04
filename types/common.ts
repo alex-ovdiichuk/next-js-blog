@@ -4,5 +4,6 @@ export interface Post {
   excerpt: string;
   date: Date;
   slug: string;
-  content?: string;
+  content: string;
+  isFeatured: boolean;
 }

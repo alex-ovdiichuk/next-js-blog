@@ -1,53 +1,32 @@
 import React, { FC } from 'react';
+import { GetStaticProps } from 'next';
 
 import { Hero, FeaturedPosts } from '../components/HomePage';
 import { Post } from '../types';
+import { getFeaturedPosts } from '../util/postsUtil';
 
-const DUMMY_POSTS: Post[] = [
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-];
+interface HomePageProps {
+  posts: Post[];
+}
 
-const HomePage: FC = () => {
+const HomePage: FC<HomePageProps> = ({ posts }) => {
   return (
     <>
       <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS} />
+      <FeaturedPosts posts={posts} />
     </>
   );
 };
 
 export default HomePage;
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const posts = getFeaturedPosts();
+
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 60,
+  };
+};

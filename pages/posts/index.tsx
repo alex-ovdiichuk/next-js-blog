@@ -1,48 +1,27 @@
 import React, { FC } from 'react';
+import { GetStaticProps } from 'next';
 
 import { AllPosts } from '../../components/Posts';
 import { Post } from '../../types';
+import { getAllPosts } from '../../util/postsUtil';
 
-const DUMMY_POSTS: Post[] = [
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-  {
-    title: 'Getting Started',
-    image: 'getting-started.png',
-    excerpt: 'Next JS react framework',
-    date: new Date(),
-    slug: 'getting-started',
-  },
-];
+interface PostsPageProps {
+  posts: Post[];
+}
 
-const PostsPage: FC = () => {
-  return <AllPosts posts={DUMMY_POSTS} />;
+const PostsPage: FC<PostsPageProps> = ({ posts }) => {
+  return <AllPosts posts={posts} />;
 };
 
 export default PostsPage;
+
+export const getStaticProps: GetStaticProps<PostsPageProps> = async () => {
+  const posts = getAllPosts();
+
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 60,
+  };
+};
