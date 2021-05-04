@@ -1,12 +1,15 @@
 import React, { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import Image from 'next/image';
 
 import { PostHeader } from './PostHeader';
 import { Post } from '../../../types';
 import styles from './PostContent.module.css';
+
+SyntaxHighlighter.registerLanguage('javascript', js);
 
 interface PostContentProps {
   post: Post;

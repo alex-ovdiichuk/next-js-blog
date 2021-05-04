@@ -13,13 +13,16 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 
     let client: MongoClient;
     try {
-      client = await MongoClient.connect(
-        'mongodb+srv://root:ac2d5wcd@cluster0.f2urp.mongodb.net/next-js-blog?retryWrites=true&w=majority'
-      );
+      const { mongodb_user, mongodb_password, mongodb_cluster, mongodb_db } = process.env;
+      const url = `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_cluster}/${mongodb_db}?retryWrites=true&w=majority`;
+
+      client = await MongoClient.connect(url);
+
       const db = client.db();
 
       await db.collection('messages').insertOne(newMessage);
     } catch (err) {
+      console.log(err);
       res.status(500).json({ message: 'Internal server error' });
       return;
     }
