@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 import { Hero, FeaturedPosts } from '../components/HomePage';
 import { Post } from '../types';
@@ -12,6 +13,9 @@ interface HomePageProps {
 const HomePage: FC<HomePageProps> = ({ posts }) => {
   return (
     <>
+      <Head>
+        <title>Welcome to my blog</title>
+      </Head>
       <Hero />
       <FeaturedPosts posts={posts} />
     </>

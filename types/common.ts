@@ -7,3 +7,5 @@ export interface Post {
   content: string;
   isFeatured: boolean;
 }
+
+export type RequestStatus = 'success' | 'error' | 'pending' | null;

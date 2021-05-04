@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
+import Head from 'next/head';
 
 import { PostContent } from '../../components/Posts';
 import { Post } from '../../types';
@@ -10,7 +11,14 @@ interface PostPageProps {
 }
 
 const PostPage: FC<PostPageProps> = ({ post }) => {
-  return <PostContent post={post} />;
+  return (
+    <>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
+      <PostContent post={post} />
+    </>
+  );
 };
 
 export default PostPage;
