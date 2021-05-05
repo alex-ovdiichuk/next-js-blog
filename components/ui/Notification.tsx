@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 
 import { RequestStatus } from '../../types';
-import styles from './notification.module.css';
+import styles from './Notification.module.css';
 
 interface NotificationProps {
   title: string;
